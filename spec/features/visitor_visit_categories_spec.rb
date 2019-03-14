@@ -21,4 +21,18 @@ feature "Visitor navigate categories" do
     expect(page).to have_css('p', text: "Não existem categorias cadastradas!")
   end
 
+  scenario "and back to index page" do
+    category1 = create(:category, name: "Eletricista")
+    category2 = create(:category, name: "Encanador")
+    create(:contractor, name: "Severino Eletricista", category: category1)
+    create(:contractor, name: "Mario Encanador", category: category2)
+    
+    visit root_path
+    click_on("Eletricista")
+    click_on("Voltar")
+
+    expect(page).to have_link('Eletricista')
+
+  end
+
 end
