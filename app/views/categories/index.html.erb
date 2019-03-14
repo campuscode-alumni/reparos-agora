@@ -2,3 +2,14 @@
 <% if contractor_signed_in? %>
 <h4><%= "Bem vindo, #{current_contractor.name}."%></h4>
 <% end %>
+
+<% if user_signed_in? %>
+  <h4>Bem-vindo, <%= current_user.name%>! </h4>
+<% end %>
+<%if @categories.size == 0%>
+  <p>Não existem categorias cadastradas!</p>
+<%else%>
+  <% @categories.each do |category|  %>
+    <%= link_to category.name, category %>
+  <%end%>
+<%end%>
