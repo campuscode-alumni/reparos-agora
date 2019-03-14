@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_232228) do
+ActiveRecord::Schema.define(version: 2019_03_14_003538) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2019_03_13_232228) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.string "cpf"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["category_id"], name: "index_contractors_on_category_id"
+    t.index ["email"], name: "index_contractors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_contractors_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|

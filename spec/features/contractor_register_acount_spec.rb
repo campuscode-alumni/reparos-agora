@@ -1,0 +1,27 @@
+require 'rails_helper'
+
+feature 'User registers new contractor acount' do
+  scenario 'succesfully' do
+    
+    Category.create(name: 'Amigo de aluguel')
+
+    visit root_path
+    click_on 'Novo prestador'
+    fill_in 'Nome', with: 'Vinicius'
+    fill_in 'Email', with: 'vinicius@email.com'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmar senha', with: '123456'
+    fill_in 'CPF', with: '367.703.570-89'
+    select 'Amigo de aluguel', from: 'Categorias'
+
+    click_on 'Enviar'
+
+    save_page
+
+    expect(current_path).to eq root_path
+    expect(page).to have_css('h4', text: 'Bem vindo, Vinicius.')
+    expect(page).to_not have_link('p', text: 'Entrar como prestador')
+    expect(page).to have_link( 'p', text: 'Sair')
+
+  end
+end

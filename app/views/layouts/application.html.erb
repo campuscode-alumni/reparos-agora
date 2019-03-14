@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Novo prestador', new_contractor_registration_path %>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
