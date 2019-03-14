@@ -1,3 +1,7 @@
-<% @categories.each do |category|  %>
-  <%= link_to category.name, category %>
+<%if @categories.size == 0%>
+  <p>Não existem categorias cadastradas!</p>
+<%else%>
+  <% @categories.each do |category|  %>
+    <%= link_to category.name, category %>
+  <%end%>
 <%end%>

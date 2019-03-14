@@ -5,7 +5,7 @@ feature "Visitor navigate categories" do
     category1 = create(:category, name: "Eletricista")
     category2 = create(:category, name: "Encanador")
     create(:contractor, name: "Severino Eletricista", category: category1)
-    create(:contractor, name: "Maria Encanador", category: category2)
+    create(:contractor, name: "Mario Encanador", category: category2)
     
     visit root_path
     click_on("Eletricista")
@@ -15,4 +15,10 @@ feature "Visitor navigate categories" do
     expect(page).not_to have_css('p', text: "Mario Encanador")
 
   end
+
+  scenario "with no categories" do
+    visit root_path
+    expect(page).to have_css('p', text: "Não existem categorias cadastradas!")
+  end
+
 end

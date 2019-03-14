@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(params[:id])
-    @contractors = Contractor.all
+    @contractors = Contractor.where(category: @category)
   end
 end
