@@ -1,0 +1,7 @@
+<h1><%=@category.name%></h1>
+
+<% @contractors.each do |contractor|  %>
+  <p><%= contractor.name %></p>
+<%end%>
+
+<p><%=link_to 'Voltar', root_path%>
