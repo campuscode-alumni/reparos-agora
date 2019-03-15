@@ -1,0 +1,15 @@
+<div>
+  <h1><%= @estimate.description %></h1>
+  <h5> Enviado por:</h5>
+  <p> <%= @estimate.user.name %> </p>
+
+  <h5> Local</h5>
+  <p> <%= @estimate.location %> </p>
+
+  <h5> Data de execução</h5>
+  <p> <%= @estimate.service_date %> </p>
+
+  <h5> Turno de execução</h5>
+  <p> <%= @estimate.day_shift %> </p>
+
+</div>
