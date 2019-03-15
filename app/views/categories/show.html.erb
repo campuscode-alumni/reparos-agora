@@ -2,6 +2,7 @@
 
 <% @contractors.each do |contractor|  %>
   <p><%= contractor.name %></p>
+  <p><%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor)%>
 <%end%>
 
 <p><%=link_to 'Voltar', root_path%>

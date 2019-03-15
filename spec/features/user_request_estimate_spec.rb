@@ -12,11 +12,16 @@ feature "User request estimate" do
 
     fill_in "Descrição", with: "Instalar tomada 220V"
     fill_in "Local", with: "Morumbi"
-    fill_in "Data", with: "20/04/2019"
+    fill_in "Data desejada", with: "20/04/2019"
     select "Tarde", from: "Turno"
     attach_file 'Foto', Rails.root.join('spec', 'support', 'tomada.jpg')
+    click_on 'Enviar'
 
     expect(page).to have_content("Orçamento solicitado com sucesso!")
+    expect(page).to have_css('p', text: "Instalar tomada 220V")
+    expect(page).to have_css('p', text: "Morumbi")
+    expect(page).to have_css('p', text: "20/04/2019")
+    expect(page).to have_css('p', text: "Tarde")
 
   end
 end
