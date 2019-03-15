@@ -6,5 +6,6 @@ class Contractor < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :category
+  has_many :estimates
 
 end

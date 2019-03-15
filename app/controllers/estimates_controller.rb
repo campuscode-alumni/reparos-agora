@@ -6,8 +6,7 @@ class EstimatesController < ApplicationController
 
   def create
     @contractor = Contractor.find(params[:contractor_id])
-    @estimate = Estimate.new(estimate_params)
-    @estimate.contractor_id = @contractor
+    estimate = @contractor.estimates.new(estimate_params)
     @estimate.save!
       flash[:notice] = "Orçamento solicitado com sucesso!"
       redirect_to @estimate
