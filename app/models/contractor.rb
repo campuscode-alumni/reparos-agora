@@ -5,6 +5,8 @@ class Contractor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, :category, presence: true
+
   belongs_to :category
 
 end

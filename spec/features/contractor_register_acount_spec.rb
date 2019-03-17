@@ -15,8 +15,6 @@ feature 'User registers new contractor acount' do
     select 'Amigo de aluguel', from: 'Categorias'
     click_on 'Enviar'
 
-    save_page
-
     expect(current_path).to eq root_path
     expect(page).to have_css('h4', text: 'Bem vindo, Vinicius.')
     expect(page).to_not have_link('p', text: 'Entrar como prestador')
