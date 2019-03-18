@@ -1,0 +1,11 @@
+<h2>Edite a categoria</h2>
+
+<%= flash[:alert] %>
+
+<%= form_for @category do |category| %>
+  <%= category.label :name, 'Nome' %>
+  <%= category.text_field :name %>
+  <%= category.submit 'Enviar' %>
+<% end %>
+
+<p><%= link_to 'Voltar', @category %></p>
