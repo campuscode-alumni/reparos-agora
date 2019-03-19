@@ -2,9 +2,10 @@ FactoryBot.define do
   factory :estimate do
     contractor 
     user 
-    description { "MyText" }
-    location { "MyString" }
+    title { "Título padrão" }
+    description { "Descrição padrão" }
+    location { "Casa da sogra" }
     service_date { "2019-03-14 20:17:40" }
-    day_shift { "MyString" }
+    day_shift { "Manhã" }
   end
 end
