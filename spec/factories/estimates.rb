@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :estimate do
+    title { "MyString" }
     contractor { nil }
     user { nil }
     description { "MyText" }

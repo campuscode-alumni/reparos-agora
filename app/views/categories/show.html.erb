@@ -2,7 +2,9 @@
 
 <% @contractors.each do |contractor|  %>
   <p><%= contractor.name %></p>
-  <p><%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor)%>
+  <% if user_signed_in? %>
+    <p><%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor)%>
+  <% end %>
 <%end%>
 
 <p><%=link_to 'Voltar', root_path%>
