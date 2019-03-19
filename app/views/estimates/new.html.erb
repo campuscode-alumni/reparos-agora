@@ -1,0 +1,15 @@
+<%= form_for([@contractor, @estimate]) do |f| %>
+  <%= f.label :title, 'Título' %> <br>
+  <%= f.text_field :title %><br>
+  <%= f.label :description, 'Descrição' %> <br>
+  <%= f.text_area :description %><br>
+  <%= f.label :location, 'Local' %> <br>
+  <%= f.text_field :location %><br>
+  <%= f.label :service_date, 'Data desejada' %> <br>
+  <%= f.text_field :service_date %><br>
+  <%= f.label :day_shift, 'Turno' %> <br>
+  <%= f.select :day_shift, Estimate::SHIFTS %><br>
+  <%= f.label :photo, 'Foto' %><br>
+  <%= f.file_field :photo %><br>
+  <%= f.submit 'Enviar' %>
+<%end%>
