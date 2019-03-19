@@ -5,7 +5,8 @@
 
 <% if user_signed_in? %>
   <h4>Bem-vindo, <%= current_user.name%>! </h4>
-  <p> <%= link_to 'Meus orçamentos', estimates_path %>
+  <p> <%= link_to 'Meus orçamentos', estimates_path %></p>
+  <h2><%= link_to 'Nova categoria', new_category_path%></h2>
 <% end %>
 <%if @categories.size == 0%>
   <p>Não existem categorias cadastradas!</p>
@@ -14,4 +15,3 @@
     <%= link_to category.name, category %>
   <%end%>
 <%end%>
-

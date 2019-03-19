@@ -1,5 +1,5 @@
 <h1><%=@category.name%></h1>
-
+<h1><%= flash[:saved] %></h1>
 <% @contractors.each do |contractor|  %>
   <p><%= contractor.name %></p>
 <%end%>
