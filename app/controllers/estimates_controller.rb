@@ -10,7 +10,9 @@ class EstimatesController < ApplicationController
 
   def approve
     @estimate = Estimate.find(params[:id])
+    EstimatesMailer.notify_approved(@estimate.id, @estimate.contractor.email)
     @estimate.update(approved: true)
+    flash[:notice] =  'Prestador de serviço será notificado'
     redirect_to @estimate
   end
 
