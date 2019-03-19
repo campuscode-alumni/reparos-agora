@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :estimate do
     title { "MyString" }
-    contractor { nil }
-    user { nil }
+    contractor 
+    user 
     description { "MyText" }
     location { "MyString" }
     service_date { "2019-03-14 20:17:40" }

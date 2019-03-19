@@ -1,5 +1,10 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_user!
+
+  def index
+    @estimates = Estimate.all
+  end
+
   def new
     @estimate = Estimate.new
     @contractor = Contractor.find(params[:contractor_id])
@@ -17,6 +22,12 @@ class EstimatesController < ApplicationController
   def show
     @estimate = Estimate.find_by(params[:id])
     authorize_estimate(@estimate)
+  end
+
+  def approve
+    @estimate = Estimate.find(params[:id])
+    @estimate.update(approved: true)
+    redirect_to @estimate
   end
 
   private
