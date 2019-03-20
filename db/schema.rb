@@ -12,6 +12,27 @@
 
 ActiveRecord::Schema.define(version: 2019_03_19_235353) do
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -23,7 +44,15 @@ ActiveRecord::Schema.define(version: 2019_03_19_235353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.string "cpf"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.index ["category_id"], name: "index_contractors_on_category_id"
+    t.index ["email"], name: "index_contractors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_contractors_on_reset_password_token", unique: true
   end
 
   create_table "estimates", force: :cascade do |t|
@@ -31,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_235353) do
     t.integer "user_id"
     t.text "description"
     t.string "location"
-    t.datetime "service_date"
+    t.date "service_date"
     t.string "day_shift"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,6 +69,8 @@ ActiveRecord::Schema.define(version: 2019_03_19_235353) do
     t.integer "service_fee"
     t.integer "visit_fee"
     t.string "material_list"
+    t.string "title"
+    t.boolean "approved"
     t.index ["contractor_id"], name: "index_estimates_on_contractor_id"
     t.index ["user_id"], name: "index_estimates_on_user_id"
   end

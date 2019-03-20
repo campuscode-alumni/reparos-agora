@@ -1,5 +1,13 @@
+<h1>Reparos Agora</h1>
+<% if contractor_signed_in? %>
+<h4><%= "Bem vindo, #{current_contractor.name}."%></h4>
+<% end %>
+
+<%= flash[:alert] %>
+
 <% if user_signed_in? %>
   <h4>Bem-vindo, <%= current_user.name%>! </h4>
+  <p> <%= link_to 'Meus orçamentos', estimates_path %>
 <% end %>
 <%if @categories.size == 0%>
   <p>Não existem categorias cadastradas!</p>
@@ -9,4 +17,4 @@
   <%end%>
 <%end%>
 
-<%= link_to 'Ver solicitações de orçamento', estimate_index_path %>
+<%= link_to 'Ver solicitações de orçamento', estimates_path %>
