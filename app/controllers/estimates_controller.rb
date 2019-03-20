@@ -1,5 +1,5 @@
 class EstimatesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[index new approve create]
 
   def index
     @estimates = Estimate.all
@@ -39,7 +39,7 @@ class EstimatesController < ApplicationController
   end
 
   def authorize_estimate(estimate)
-    return if estimate.user == current_user
+    return if estimate.user == current_user || estimate.contractor.eql?(current_contractor)
     
     redirect_to root_path
     flash[:alert] = 'Não é possível acessar este orçamento'

@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :estimate do
-    title { "MyString" }
     contractor 
     user 
     title { "Título padrão" }

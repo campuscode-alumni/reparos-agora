@@ -9,10 +9,10 @@ feature 'Notify contractor estimate approved' do
     mailer_spy = class_spy(EstimatesMailer)
     stub_const('EstimatesMailer', mailer_spy)
 
-    login_as contractor, :scope => :contractor
+    login_as user, scope: :user
     
-    visit estimate_path(estimate.id)
-    
+    visit estimate_path(estimate)
+
     click_on 'Aprovar'
 
     expect(EstimatesMailer).to have_received(:notify_approved).with(estimate.id, 'vini@email.com')
