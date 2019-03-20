@@ -3,10 +3,11 @@ require 'rails_helper'
 feature 'Contractor responds estimate proposal' do
   scenario 'and sees list of estimates' do
     user = User.create(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    contractor = Contractor.create(name: 'Jao')
-    estimate1 = Estimate.create(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    category = Category.create!(name: 'Eletrica')
+    contractor = Contractor.create!(name: 'Jao', category: category)
+    estimate1 = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
-    estimate2 = Estimate.create(contractor: contractor, user: user, description: 'Arrumar chuveiro', 
+    estimate2 = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar chuveiro', 
                                location: 'Avenida Faria Lima', service_date: '2019-03-15', day_shift: 'Tarde')
 
     visit root_path
@@ -17,9 +18,10 @@ feature 'Contractor responds estimate proposal' do
   end
 
   scenario 'and view estimate details' do
-    user = User.create(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    contractor = Contractor.create(name: 'Jao')
-    estimate = Estimate.create(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    user = User.create!(name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = Category.create!(name: 'Eletrica')
+    contractor = Contractor.create!(name: 'Jao', category: category)
+    estimate = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
 
     visit estimate_index_path
@@ -33,9 +35,10 @@ feature 'Contractor responds estimate proposal' do
   end
 
   scenario 'and respond proposal' do
-    user = User.create(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    contractor = Contractor.create(name: 'Jao')
-    estimate = Estimate.create(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    user = User.create!(name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = Category.create!(name: 'Eletrica')
+    contractor = Contractor.create!(name: 'Jao', category: category)
+    estimate = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
 
     visit estimate_index_path
@@ -48,6 +51,22 @@ feature 'Contractor responds estimate proposal' do
     #fill_in 'Custos totais', with: 58
     click_on 'Enviar'
     
-    expect(page).to have_content('Orçamento enviado')
+    expect(page).to have_css('p', text: 'Orçamento enviado')
+  end
+
+  scenario 'and must fill in all fields' do
+    pending
+  end
+
+  scenario 'and unlogged user cant see estimate' do
+    pending
+  end
+
+  scenario 'and different contractor cant see estimate' do
+    pending
+  end
+
+  scenario 'and user cant see estimate' do
+    pending
   end
 end
