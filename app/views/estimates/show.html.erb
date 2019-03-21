@@ -14,10 +14,10 @@
   <h2><%= 'Orçamento aprovado' %></h2>
 <% elsif @estimate.approved == nil %>
   <h2><%= 'Orçamento não avaliado' %></h2>
+  <p><%= link_to 'Aprovar', approve_estimate_path %></p>
 <% else %>
  <h2><%= 'Orçamento rejeitado' %></h2>
 <%end%>
-<p><%= link_to 'Aprovar', approve_estimate_path %></p>
 
 <div>
   <%= form_for @estimate do |estimate| %>
