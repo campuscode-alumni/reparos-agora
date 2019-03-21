@@ -9,4 +9,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :cpf, :category_id])
   end
 
+  def current_contractor_or_user
+    current_contractor || current_user
+  end
 end

@@ -1,4 +1,4 @@
 <h1>Meus orçamentos</h1>
 <% @estimates.each do |estimate|%>
-  <%= link_to estimate.title, estimate_path(estimate.id) %>
+  <h4><%= link_to estimate.title, estimate %></h4>
 <% end %>

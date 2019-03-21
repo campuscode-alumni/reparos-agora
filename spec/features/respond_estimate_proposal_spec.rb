@@ -1,47 +1,53 @@
 require 'rails_helper'
 
+
 feature 'Contractor responds estimate proposal' do
   scenario 'and sees list of estimates' do
-    user = User.create(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    category = Category.create!(name: 'Eletrica')
-    contractor = Contractor.create!(name: 'Jao', category: category)
-    estimate1 = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate1 = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
-    estimate2 = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar chuveiro', 
+    estimate2 = create(:estimate, contractor: contractor, user: user, description: 'Arrumar chuveiro', 
                                location: 'Avenida Faria Lima', service_date: '2019-03-15', day_shift: 'Tarde')
 
+    login_as contractor, scope: :contractor
     visit root_path
     click_on 'Ver solicitações de orçamento'
 
-    expect(page).to have_css('h4', text: estimate1.description)
-    expect(page).to have_css('h4', text: estimate2.description)
+    expect(page).to have_css('h4', text: 'Arrumar tomada')
+    expect(page).to have_css('h4', text: estimate2.title)
   end
 
   scenario 'and view estimate details' do
-    user = User.create!(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    category = Category.create!(name: 'Eletrica')
-    contractor = Contractor.create!(name: 'Jao', category: category)
-    estimate = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
 
-    visit estimate_index_path
+    login_as contractor, scope: :contractor                            
+    visit estimates_path
     click_on 'Arrumar tomada'
 
-    expect(page).to have_css('h1', text: estimate.description)
-    expect(page).to have_css('p', text: estimate.user.name)
+    expect(page).to have_css('h1', text: estimate.title)
+    expect(page).to have_css('p', text: estimate.description)
     expect(page).to have_css('p', text: estimate.location)
-    expect(page).to have_css('p', text: estimate.service_date)
+    expect(page).to have_css('p', text: estimate.service_date.strftime('%d/%m/%Y'))
     expect(page).to have_css('p', text: estimate.day_shift)
+    expect(page).to have_css('p', text: estimate.user.name)
+    expect(page).to have_css('p', text: estimate.contractor.name)
   end
 
   scenario 'and respond proposal' do
-    user = User.create!(name: 'Zé', email: "ze@gmail.com", password: '123456')
-    category = Category.create!(name: 'Eletrica')
-    contractor = Contractor.create!(name: 'Jao', category: category)
-    estimate = Estimate.create!(contractor: contractor, user: user, description: 'Arrumar tomada', 
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
                                location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
 
-    visit estimate_index_path
+    login_as contractor, scope: :contractor                              
+    visit estimates_path
     click_on 'Arrumar tomada'
     fill_in 'Tempo de execução', with: 2
     fill_in 'Lista de materiais', with: 'parafuso e fio'
@@ -55,11 +61,28 @@ feature 'Contractor responds estimate proposal' do
   end
 
   scenario 'and must fill in all fields' do
-    pending
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
+                               location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
+
+    login_as contractor, scope: :contractor   
+    visit estimates_path
+    click_on 'Arrumar tomada'
+    fill_in 'Tempo de execução', with: ''
+    fill_in 'Lista de materiais', with: ''
+    fill_in 'Custo de materiais', with: ''
+    fill_in 'Taxa de visita', with: ''
+    fill_in 'Custo do serviço', with: ''
+    #fill_in 'Custos totais', with: 58
+    click_on 'Enviar'
+    
+    expect(page).to have_css('p', text: 'Não foi possivel salvar')
   end
 
   scenario 'and unlogged user cant see estimate' do
-    pending
+    
   end
 
   scenario 'and different contractor cant see estimate' do

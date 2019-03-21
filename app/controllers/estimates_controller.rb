@@ -1,8 +1,10 @@
 class EstimatesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_all
+  before_action :authenticate_user!, only: [:new, :create, :approve]
+  before_action :authenticate_contractor!, only: [:update]
 
   def index
-    @estimates = Estimate.all
+    @estimates = current_contractor_or_user.estimates
   end
 
   def new
@@ -37,6 +39,7 @@ class EstimatesController < ApplicationController
       redirect_to @estimate
     else
       flash[:notice] = 'Não foi possivel salvar'
+      flash[:alert] = "Não foi possivel salvar"
       render :show
     end
   end
@@ -54,9 +57,15 @@ class EstimatesController < ApplicationController
   end
 
   def authorize_estimate(estimate)
-    return if estimate.user == current_user
+    return if estimate.user == current_user || estimate.contractor == current_contractor
     
     redirect_to root_path
     flash[:alert] = 'Não é possível acessar este orçamento'
+  end
+
+  def authenticate_all
+    unless user_signed_in? || contractor_signed_in?
+      redirect_to root_path
+    end
   end
 end

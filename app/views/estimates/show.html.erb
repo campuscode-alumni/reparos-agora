@@ -1,8 +1,10 @@
-<h1><%=@estimate.title%></h1>
-<p><%=@estimate.description%></p>
-<p><%=@estimate.location%></p>
-<p><%=@estimate.service_date.strftime('%d/%m/%Y')%></p>
-<p><%=@estimate.day_shift%></p>
+<h1><%= @estimate.title %></h1>
+<p><%= @estimate.description %></p>
+<p><%= @estimate.location %></p>
+<p><%= @estimate.service_date.strftime('%d/%m/%Y') %></p>
+<p><%= @estimate.day_shift %></p>
+<p><%= @estimate.user.name %></p>
+<p><%= @estimate.contractor.name %></p>
 
 <% if @estimate.photo.attached? %>
   <%= image_tag @estimate.photo %>

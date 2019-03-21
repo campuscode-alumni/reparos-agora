@@ -14,6 +14,7 @@ feature 'User aproves estimates' do
 
     click_on 'Meus orçamentos'
     click_on 'Instalação de chuveiro'
+    save_page
     click_on 'Aprovar' 
 
     estimate.reload
