@@ -1,11 +1,19 @@
 <h1><%=@category.name%></h1>
 
+
 <% @contractors.each do |contractor|  %>
-  <p><%= contractor.name %></p>
-  <% if user_signed_in? %>
-    <p><%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor)%>
-  <% end %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= contractor.name %></h5>
+      <p class="card-text"></p>
+      <% if user_signed_in? %>
+        <%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor), class: 'card-link'%>
+      <% end %>
+    </div>
+  </div>
 <%end%>
 
-<p><%= link_to 'Editar', edit_category_path %></p>
-<p><%= link_to 'Voltar', root_path %>
+<p>
+<%= link_to 'Editar', edit_category_path, class: 'btn btn-primary' %>
+<%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
+</p>

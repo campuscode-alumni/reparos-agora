@@ -11,21 +11,42 @@
   </head>
 
   <body>
-    <h1><%= t(:title) %></h1>
-    <nav>
-      <p>
-        <% if contractor_signed_in? %>
-          <%= link_to 'Sair', destroy_contractor_session_path %>
-          <%= link_to  "Perfil de  prestador", contractor_path(current_contractor.id) %>
-        <% else %>
-          <%= link_to 'Entrar como prestador', new_contractor_session_path %>
-        <% end %>
-      </p>
-      <p><%= link_to 'Novo prestador', new_contractor_registration_path %></p>
-      <p><%= link_to 'Criar conta de usuário', new_user_registration_path %></p>
-    </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <nav class="navbar navbar-light bg-light">
+        <%= link_to t(:title), root_path, class: 'navbar-brand' %>
+
+        <ul class='nav  justify-content-end'>
+          <% if contractor_signed_in? %>
+            <li>
+              <%= link_to "Perfil de  prestador", contractor_path(current_contractor.id) , class: 'nav-link' %>
+            </li>
+            <li>
+              <%= link_to "Sair", destroy_contractor_session_path, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'Entrar como prestador', new_contractor_session_path , class: 'nav-link' %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to 'Novo prestador', new_contractor_registration_path , class: 'nav-link' %>
+          </li>
+          <li>
+            <%= link_to 'Criar conta de usuário', new_user_registration_path , class: 'nav-link' %>
+          </li>
+        </ul>
+      </nav>
+      <% if notice %>
+        <div class='alert alert-success' role='alert'>
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

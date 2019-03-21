@@ -1,5 +1,5 @@
 <% if contractor_signed_in? %>
-<h4><%= "Bem vindo, #{current_contractor.name}."%></h4>
+  <h4><%= "Bem vindo, #{current_contractor.name}."%></h4>
 <% end %>
 
 <%= flash[:alert] %>
@@ -11,8 +11,15 @@
 <%if @categories.size == 0%>
   <p>Não existem categorias cadastradas!</p>
 <%else%>
-  <% @categories.each do |category|  %>
-    <%= link_to category.name, category %>
+  <div class='row'>
+    <% @categories.each do |category|  %>
+      <div class='col-4'>
+        <div class="card">
+          <div class="card-body">
+            <h5 class='card-title'><%= link_to category.name, category %></h5>
+          </div>
+        </div>
+      </div>
+    <%end%>
   <%end%>
-<%end%>
 
