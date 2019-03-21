@@ -82,14 +82,42 @@ feature 'Contractor responds estimate proposal' do
   end
 
   scenario 'and unlogged user cant see estimate' do
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
+                               location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
+
+    visit estimate_path(estimate)
     
+    expect(current_path).to eq root_path
   end
 
   scenario 'and different contractor cant see estimate' do
-    pending
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    contractor1 = create(:contractor, name: 'Ze', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
+                               location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
+
+    login_as contractor1, scope: :contractor
+    visit estimate_path(estimate)
+
+    expect(page).not_to have_css('h1', text: estimate.title)
   end
 
-  scenario 'and user cant see estimate' do
-    pending
+  scenario 'and different user cant see estimate' do
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    user2 = create(:user, name: 'Zé', email: "zezin@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
+                               location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
+
+    login_as user2, scope: :user
+    visit estimate_path(estimate)
+
+    expect(page).not_to have_css('h1', text: estimate.title)
   end
 end
