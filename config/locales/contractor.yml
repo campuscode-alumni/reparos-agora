@@ -1,0 +1,20 @@
+pt-BR:
+  contractor:
+    name: 'Nome'
+    email: 'E-mail'
+    password: 'Senha'
+    category: 'Categoria'
+pt-BR:
+  activerecord:
+    models:
+      contractor: 'Prestador'
+    attributes:
+      contractor:
+        name: 'Nome'
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'
+        category: 'Categoria'
+        category_id: 'Categoria'
+        remember_me: 'Ficar conectado'
+      
