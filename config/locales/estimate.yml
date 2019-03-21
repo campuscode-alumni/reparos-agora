@@ -10,6 +10,12 @@ pt-BR:
         service_date: 'Data desejada'
         day_shift: 'Turno'
         photo: 'Foto'
+        total_hours: 'Tempo de execução'
+        material_list: 'Lista de materiais'
+        material_fee: 'Custo de materiais'
+        visit_fee: 'Taxa de visita'
+        service_fee: 'Custo do serviço'
+
 
 
  

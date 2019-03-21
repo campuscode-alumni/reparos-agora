@@ -55,7 +55,7 @@ feature 'Contractor responds estimate proposal' do
     fill_in 'Taxa de visita', with: 5
     fill_in 'Custo do serviço', with: 50
     #fill_in 'Custos totais', with: 58
-    click_on 'Enviar'
+    click_on 'Atualizar Orçamento'
     
     expect(page).to have_css('p', text: 'Orçamento enviado')
   end
@@ -76,7 +76,7 @@ feature 'Contractor responds estimate proposal' do
     fill_in 'Taxa de visita', with: ''
     fill_in 'Custo do serviço', with: ''
     #fill_in 'Custos totais', with: 58
-    click_on 'Enviar'
+    click_on 'Atualizar Orçamento'
     
     expect(page).to have_css('p', text: 'Não foi possivel salvar')
   end

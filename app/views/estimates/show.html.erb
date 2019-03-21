@@ -21,21 +21,21 @@
 
 <div>
   <%= form_for @estimate do |estimate| %>
-    <%= estimate.label :total_hours, 'Tempo de execução' %>
+    <%= estimate.label :total_hours %>
     <%= estimate.number_field :total_hours %>
 
-    <%= estimate.label :material_list, 'Lista de materiais' %>
+    <%= estimate.label :material_list %>
     <%= estimate.number_field :material_list %>
 
-    <%= estimate.label :material_fee, 'Custo de materiais' %>
+    <%= estimate.label :material_fee %>
     <%= estimate.number_field :material_fee %>
 
-    <%= estimate.label :visit_fee, 'Taxa de visita' %>
+    <%= estimate.label :visit_fee %>
     <%= estimate.number_field :visit_fee %>
 
-    <%= estimate.label :service_fee, 'Custo do serviço' %>
+    <%= estimate.label :service_fee %>
     <%= estimate.number_field :service_fee %>
 
-    <%= estimate.submit 'Enviar' %>
+    <%= estimate.submit %>
   <% end %>
 </div>
