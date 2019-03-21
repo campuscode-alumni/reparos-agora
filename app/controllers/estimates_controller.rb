@@ -1,8 +1,10 @@
 class EstimatesController < ApplicationController
-  before_action :authenticate_user!, only: %i[index new approve create]
+  before_action :authenticate_all
+  before_action :authenticate_user!, only: %i[new approve create]
+  before_action :authenticate_contractor!, only: [:update]
 
   def index
-    @estimates = Estimate.all
+    @estimates = current_contractor_or_user.estimates
   end
 
   def new
@@ -32,7 +34,24 @@ class EstimatesController < ApplicationController
     redirect_to @estimate
   end
 
+  def update
+    @estimate = Estimate.find(params[:id])
+    if @estimate.update(params_update)
+      flash[:notice] = 'Orçamento enviado'
+      redirect_to @estimate
+    else
+      flash[:alert] = "Não foi possivel salvar"
+      render :show
+    end
+  end
+
   private
+
+  def params_update
+    params.require(:estimate).permit(:total_hours, :material_list,
+                                     :material_fee, :visit_fee,
+                                                      :service_fee)
+  end
 
   def estimate_params
     params.require(:estimate).permit(:title, :description, :location, :service_date, :day_shift, :photo)
@@ -40,8 +59,13 @@ class EstimatesController < ApplicationController
 
   def authorize_estimate(estimate)
     return if estimate.user == current_user || estimate.contractor.eql?(current_contractor)
-    
     redirect_to root_path
     flash[:alert] = 'Não é possível acessar este orçamento'
+  end
+
+  def authenticate_all
+    unless user_signed_in? || contractor_signed_in?
+      redirect_to root_path
+    end
   end
 end

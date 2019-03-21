@@ -41,7 +41,7 @@ feature "User request estimate" do
     visit new_contractor_estimate_path(contractor)
 
     #Assert
-    expect(current_path).to eq new_user_session_path
+    expect(current_path).to eq root_path
   end
 
   scenario "and can't see another user's estimates" do

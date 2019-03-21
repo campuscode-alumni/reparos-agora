@@ -6,7 +6,7 @@
 <%= flash[:alert] %>
 
 <% if user_signed_in? %>
-  <h4>Bem-vindo, <%= current_user.name%>! </h4>
+  <h4>Bem-vindo, <%= current_user.name %>! </h4>
   <p> <%= link_to 'Meus orçamentos', estimates_path %>
 <% end %>
 <%if @categories.size == 0%>
@@ -17,3 +17,4 @@
   <%end%>
 <%end%>
 
+<%= link_to 'Ver solicitações de orçamento', estimates_path %>
