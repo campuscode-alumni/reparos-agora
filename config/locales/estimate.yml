@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      estimate: 'Orçamento'
+    attributes:
+      estimate:
+        title: 'Título'
+        description: 'Descrição'
+        location: 'Local'
+        service_date: 'Data desejada'
+        day_shift: 'Turno'
+        photo: 'Foto'
+
+
+ 
+  #validates :total_hours, :material_list, :material_fee, :visit_fee, :service_fee, presence: true, on: :update
+    

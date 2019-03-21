@@ -19,7 +19,7 @@ feature "User request estimate" do
     fill_in "Data desejada", with: "20/04/2019"
     select "Tarde", from: "Turno"
     attach_file 'Foto', Rails.root.join('spec', 'support', 'tomada.jpg')
-    click_on 'Enviar'
+    click_on 'Criar Orçamento'
 
     #Assert
     expect(page).to have_content("Orçamento solicitado com sucesso!")
