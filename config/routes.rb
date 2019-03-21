@@ -1,21 +1,18 @@
 Rails.application.routes.draw do
 
   devise_for :contractors
-  resources :contractors, only: [:show, :edit, :update]
  
   devise_for :users
   root to: "categories#index"
-  resources :categories, only: [:show]
+
+  resources :categories, only: [:show, :edit, :update]
   
-  resources :contractors do
+  resources :contractors, only: [:show, :edit, :update] do
     resources :estimates, only: [:new, :create]
   end
 
-  resources :estimates, only: [:show, :index] do
-
+  resources :estimates, only: [:show, :index, :update] do
     get 'approve', on: :member
-
   end
   
-  resources :categories, only: [:show, :edit, :update]
 end

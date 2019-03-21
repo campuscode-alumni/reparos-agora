@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_233415) do
+ActiveRecord::Schema.define(version: 2019_03_19_235353) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 2019_03_18_233415) do
     t.string "day_shift"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_hours"
+    t.integer "material_fee"
+    t.integer "service_fee"
+    t.integer "visit_fee"
+    t.string "material_list"
     t.string "title"
     t.boolean "approved"
     t.index ["contractor_id"], name: "index_estimates_on_contractor_id"
