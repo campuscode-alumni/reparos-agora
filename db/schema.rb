@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 2019_03_22_004541) do
     t.string "day_shift"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.boolean "approved"
     t.integer "total_hours"
     t.decimal "material_fee"
     t.decimal "service_fee"
     t.decimal "visit_fee"
     t.string "material_list"
-    t.string "title"
-    t.boolean "approved"
     t.decimal "total_fee"
     t.index ["contractor_id"], name: "index_estimates_on_contractor_id"
     t.index ["user_id"], name: "index_estimates_on_user_id"

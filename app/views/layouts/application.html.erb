@@ -14,7 +14,7 @@
     <nav>
       <p>
         <% if contractor_signed_in? %>
-          <%= link_to 'Sair', destroy_contractor_session_path %>
+          <%= link_to 'Sair', destroy_contractor_session_path, method: :delete %> | 
           <%= link_to  "Perfil de  prestador", contractor_path(current_contractor.id) %>
         <% else %>
           <%= link_to 'Entrar como prestador', new_contractor_session_path %>
