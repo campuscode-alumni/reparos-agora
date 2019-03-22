@@ -120,4 +120,27 @@ feature 'Contractor responds estimate proposal' do
 
     expect(page).not_to have_css('h1', text: estimate.title)
   end
+  scenario 'send notification to user' do
+    user = create(:user, name: 'Zé', email: "ze@gmail.com", password: '123456')
+    category = create(:category, name: 'Eletrica')
+    contractor = create(:contractor, name: 'Jao', category: category)
+    estimate = create(:estimate, title: 'Arrumar tomada', contractor: contractor, user: user, description: 'Arrumar tomada quebrada', 
+                               location: 'Avenida Paulista', service_date: '2019-03-15', day_shift: 'Noite')
+    
+    mailer_spy = class_spy(EstimatesMailer)
+    stub_const('EstimatesMailer', mailer_spy)                           
+
+    login_as contractor, scope: :contractor
+    visit estimates_path
+    click_on 'Arrumar tomada'
+    fill_in 'Tempo de execução', with: 2
+    fill_in 'Lista de materiais', with: 'parafuso e fio'
+    fill_in 'Custo de materiais', with: 3
+    fill_in 'Taxa de visita', with: 5
+    fill_in 'Custo do serviço', with: 50
+    #fill_in 'Custos totais', with: 58
+    click_on 'Atualizar Orçamento'
+
+    expect(EstimatesMailer).to have_received(:notify_answered_estimate).with(estimate.id, 'ze@gmail.com')
+  end
 end

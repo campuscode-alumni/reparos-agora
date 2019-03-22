@@ -37,6 +37,7 @@ class EstimatesController < ApplicationController
   def update
     @estimate = Estimate.find(params[:id])
     if @estimate.update(params_update)
+      EstimatesMailer.notify_answered_estimate(@estimate.id, @estimate.user.email)
       flash[:notice] = 'Orçamento enviado'
       redirect_to @estimate
     else
