@@ -21,7 +21,16 @@
         <% end %>
       </p>
       <p><%= link_to 'Novo prestador', new_contractor_registration_path %></p>
+
+      <p>
+        <% if user_signed_in? %>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete %> | 
+        <% else %>
+          <%= link_to 'Entrar como usuário', new_user_session_path %>
+        <% end %>
+      </p>
       <p><%= link_to 'Criar conta de usuário', new_user_registration_path %></p>
+      
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
