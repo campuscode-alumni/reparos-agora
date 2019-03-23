@@ -6,6 +6,7 @@ pt-BR:
       user:
         name: 'Nome'
         email: 'E-mail'
+        cpf: 'CPF'
         password: 'Senha'
         password_confirmation: 'Confirmar senha'
         remember_me: 'Ficar conectado'

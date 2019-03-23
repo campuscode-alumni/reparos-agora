@@ -14,6 +14,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :cpf %><br />
+    <%= f.number_field :cpf,  autocomplete: "CPF" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> <%= t('devise.registrations.characters_minimum') %>)</em>

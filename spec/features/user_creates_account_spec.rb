@@ -6,6 +6,7 @@ feature 'User creates account' do
     click_on 'Criar conta de usuário'
     fill_in 'Nome', with: 'Carol'
     fill_in 'E-mail', with: 'carol@gmail.com'
+    fill_in 'CPF', with: '12345678910'
     fill_in 'Senha', with: '12345678'
     fill_in 'Confirmar senha', with: '12345678'
     click_on 'Enviar'
@@ -20,6 +21,7 @@ feature 'User creates account' do
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: 'carol@gmail.com'
     fill_in 'Senha', with: '12345678'
+    fill_in 'CPF', with: '12345678910'
     fill_in 'Confirmar senha', with: '12345678'
     click_on 'Enviar'
 
