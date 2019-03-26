@@ -3,13 +3,14 @@ require 'rails_helper'
 feature 'Contractor edit his profile' do
   scenario 'successfully' do
     contractor = create(:contractor)
-    create(:sub_category, name: 'Arrumar chuveiro', category: contractor.category) 
-    create(:sub_category, name: 'Arrumar tomada', category: contractor.category) 
-    create(:sub_category, name: 'Ar condicionado', category: contractor.category) 
+    create(:sub_category, name: 'Arrumar chuveiro', category: contractor.category)
+    create(:sub_category, name: 'Arrumar tomada', category: contractor.category)
+    create(:sub_category, name: 'Ar condicionado', category: contractor.category)
 
     login_as contractor, scope: :contractor
     visit root_path
     click_on 'Perfil de prestador'
+    click_on 'Editar perfil'
     fill_in 'Nome', with: 'Fulano'
     fill_in 'CPF', with: '582.205.910-48'
     fill_in 'Cidade', with: 'Campinas'

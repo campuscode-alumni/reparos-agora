@@ -11,4 +11,8 @@ class Contractor < ApplicationRecord
   has_many :estimates
   has_one :profile
   accepts_nested_attributes_for :profile
+
+  before_create do
+    build_profile
+  end
 end

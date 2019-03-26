@@ -22,7 +22,7 @@ class ContractorsController < ApplicationController
       end
     end
 
-    private 
+    private
 
     def contractor_params
       params.require(:contractor).permit(:name, :category_id, :cpf, profile_attributes: [:id, :city])
