@@ -1,6 +1,11 @@
 <h1>Perfil de prestador</h1>
 
 <h2><%= @contractor.name %></h2>
+<h2><%= @contractor.cpf %></h2>
+<h2><%= @contractor.profile.city %></h2>
 <p><%= @contractor.category.name %></p>
+<% @contractor.profile.sub_categories.each do |sub|%>
+  <p><%= sub.name %></p>
+<% end %>
 
-<p><%= link_to  "Editar perfil", edit_contractor_path %></p>
+<p><%#= link_to  "Editar perfil", edit_contractor_path %></p>

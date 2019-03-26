@@ -7,12 +7,12 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show, :edit, :update]
   
-  resources :contractors, only: [:show, :edit, :update] do
+  resources :contractors, only: [:show, :update] do
     resources :estimates, only: [:new, :create]
   end
 
   resources :estimates, only: [:show, :index, :update] do
     get 'approve', on: :member
   end
-  
+  get 'edit_profile', to: "contractors#edit"
 end

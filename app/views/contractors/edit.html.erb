@@ -1,9 +1,19 @@
 <h1>Editar perfil de prestador</h1>
+
 <%= flash[:alert] %>
+
 <%= form_for @contractor do |f| %>
   <p><%= f.label :name, 'Nome' %></p>
   <p><%= f.text_field :name %></p>
   <p><%= f.label :category_id, 'Categorias' %></p>
   <p><%= f.collection_select :category_id, @categories, :id, :name %></p>
+  <p><%= f.label :cpf, 'CPF' %></p>
+  <p><%= f.text_field :cpf %></p>
+  <%= f.fields_for :profile do |p| %>
+    <p><%= p.label :city, 'Cidade' %></p>
+    <p><%= p.text_field :city %></p>
+    <p><%= p.collection_check_boxes(:sub_category_ids, 
+    @contractor.category.sub_categories, :id, :name) %></p>
+  <% end %>
   <p><%= f.submit 'Atualizar'%>
 <% end %>
