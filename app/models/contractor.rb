@@ -18,7 +18,7 @@ class Contractor < ApplicationRecord
   end
   
   def update_average
-    grade_total = self.review_contractors.all.sum('grade')
+    grade_total = self.review_contractors.all.sum('grade').to_f
     review_num = self.review_contractors.all.count
     return nil if (review_num == 0) 
     self.average = grade_total/review_num
