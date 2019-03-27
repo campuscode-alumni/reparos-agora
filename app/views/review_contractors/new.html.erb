@@ -1,0 +1,7 @@
+<%=form_for [@service_order, @review_contractor] do |f|%>
+  <p><%= f.label :grade, 'Nota'%></p>
+  <p><%= f.select :grade, [0, 1, 2, 3, 4, 5] %></p>
+  <p><%= f.label :comment, 'Comentário'%></p>
+  <p><%= f.text_area :comment %></p>
+  <p><%= f.submit 'Avaliar'%> </p>
+<% end %>

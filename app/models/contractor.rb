@@ -10,9 +10,11 @@ class Contractor < ApplicationRecord
   belongs_to :category
   has_many :estimates
   has_one :profile
+  has_many :review_contractors
   accepts_nested_attributes_for :profile
 
   before_create do
     build_profile
   end
+
 end

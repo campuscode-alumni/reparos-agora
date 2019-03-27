@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   resources :estimates, only: [:show, :index, :update] do
     get 'approve', on: :member
   end
+
+  resources :service_orders, only: [:show] do
+    resources :review_contractors, only: [:new, :create]
+  end
 end

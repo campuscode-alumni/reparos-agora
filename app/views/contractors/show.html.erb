@@ -8,4 +8,9 @@
   <p><%= sub.name %></p>
 <% end %>
 
-<p><%= link_to  "Editar perfil", edit_contractor_path(current_contractor) %></p>
+<p><% @contractor.review_contractors.each do |review| %>
+  <p><%= "Avaliação: #{review.grade}"%></p>
+  <p><%= "Comentário: #{review.comment}"%>
+<% end %>
+
+<p><%#= link_to  "Editar perfil", edit_contractor_path(current_contractor) %></p>

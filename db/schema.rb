@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_000836) do
+ActiveRecord::Schema.define(version: 2019_03_27_005220) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 2019_03_26_000836) do
     t.string "day_shift"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.boolean "approved"
     t.integer "total_hours"
     t.decimal "material_fee"
     t.decimal "service_fee"
     t.decimal "visit_fee"
     t.string "material_list"
-    t.string "title"
-    t.boolean "approved"
     t.decimal "total_fee"
     t.index ["contractor_id"], name: "index_estimates_on_contractor_id"
     t.index ["user_id"], name: "index_estimates_on_user_id"
@@ -91,6 +91,24 @@ ActiveRecord::Schema.define(version: 2019_03_26_000836) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contractor_id"], name: "index_profiles_on_contractor_id"
+  end
+
+  create_table "review_contractors", force: :cascade do |t|
+    t.integer "grade"
+    t.text "comment"
+    t.integer "service_order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "contractor_id"
+    t.index ["contractor_id"], name: "index_review_contractors_on_contractor_id"
+    t.index ["service_order_id"], name: "index_review_contractors_on_service_order_id"
+  end
+
+  create_table "service_orders", force: :cascade do |t|
+    t.integer "estimate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estimate_id"], name: "index_service_orders_on_estimate_id"
   end
 
   create_table "sub_categories", force: :cascade do |t|
