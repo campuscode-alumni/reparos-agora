@@ -17,15 +17,12 @@ class Contractor < ApplicationRecord
     build_profile
   end
   
-  def self.update_average(contractor)
-    grade_total = 0
-    review_num = 0
-    contractor.review_contractors.each do |review|
-      grade_total += review.grade
-      review_num +=1
-    end
+  def update_average
+    grade_total = self.review_contractors.all.sum('grade')
+    review_num = self.review_contractors.all.count
     return nil if (review_num == 0) 
-    average = grade_total/review_num
+    self.average = grade_total/review_num
+    self.save!
   end
 
 end

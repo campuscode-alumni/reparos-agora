@@ -23,4 +23,5 @@ feature 'User review a contractor' do
     expect(page).to have_content('O Vini é um cara bem legal.')
 
   end
+
 end

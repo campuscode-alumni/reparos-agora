@@ -10,8 +10,8 @@ class ReviewContractorsController < ApplicationController
     @review_contractor = ReviewContractor.new(review_params)
     @review_contractor.service_order = @service_order
     @review_contractor.contractor = @service_order.estimate.contractor
-
     @review_contractor.save!
+    @service_order.estimate.contractor.update_average
     redirect_to @review_contractor.service_order.estimate.contractor
   end
 

@@ -8,8 +8,8 @@
   <p><%= sub.name %></p>
 <% end %>
 
+<p><%= "Média das avaliações: #{@contractor.average}" %></p>
 <p><% @contractor.review_contractors.each do |review| %>
-  <p><%= "Média das avaliações: #{@average_grade}" %>
   <p><%= "Avaliação: #{review.grade}" %></p>
   <p><%= "Comentário: #{review.comment}" %></p>
 <% end %>
