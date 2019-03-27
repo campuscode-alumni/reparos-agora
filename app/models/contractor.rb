@@ -16,5 +16,16 @@ class Contractor < ApplicationRecord
   before_create do
     build_profile
   end
+  
+  def self.update_average(contractor)
+    grade_total = 0
+    review_num = 0
+    contractor.review_contractors.each do |review|
+      grade_total += review.grade
+      review_num +=1
+    end
+    return nil if (review_num == 0) 
+    average = grade_total/review_num
+  end
 
 end

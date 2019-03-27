@@ -2,6 +2,7 @@ class ContractorsController < ApplicationController
 
     def show
       @contractor = Contractor.find(params[:id])
+      @average_grade = Contractor.update_average(@contractor)
     end
 
     def edit

@@ -9,8 +9,11 @@
 <% end %>
 
 <p><% @contractor.review_contractors.each do |review| %>
-  <p><%= "Avaliação: #{review.grade}"%></p>
-  <p><%= "Comentário: #{review.comment}"%>
+  <p><%= "Média das avaliações: #{@average_grade}" %>
+  <p><%= "Avaliação: #{review.grade}" %></p>
+  <p><%= "Comentário: #{review.comment}" %></p>
 <% end %>
 
-<p><%#= link_to  "Editar perfil", edit_contractor_path(current_contractor) %></p>
+<% if contractor_signed_in? %>
+<p><%= link_to  "Editar perfil", edit_contractor_path(current_contractor) %></p>
+<% end %>
