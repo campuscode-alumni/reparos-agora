@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :contractors
 
   devise_for :users
+  resources :users, only: [:show]
   root to: "categories#index"
 
   resources :categories, only: [:show, :edit, :update]
@@ -13,5 +14,9 @@ Rails.application.routes.draw do
 
   resources :estimates, only: [:show, :index, :update] do
     get 'approve', on: :member
+  end
+
+  resources :service_orders, only: [:show] do
+    resources :user_reviews, only: [:new, :create]
   end
 end
