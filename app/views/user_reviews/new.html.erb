@@ -1,0 +1,7 @@
+<%= form_for([@service_order, @user_review]) do |review| %>
+  <%= review.label :score, 'Nota' %>
+  <%= review.select :score, UserReview::SCORE %>
+  <%= review.label :comment, 'Comentário' %>
+  <%= review.text_area :comment %>
+  <%= review.submit 'Enviar' %>
+<% end %>

@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :estimates
   validates :name, presence: true
+  has_many :user_reviews
+
+  def update_average
+      
+  end
 end
