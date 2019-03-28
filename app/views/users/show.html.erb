@@ -1,4 +1,14 @@
-<% @user.user_reviews.each do |user| %>
-  <%= user.score %>
-  <%= user.comment %>
+<h2>
+  Nota média: 
+  <%= @user.average_rating %>
+</h2>
+
+
+
+<% @user.user_reviews.each do |review| %>
+  <ul>  
+    <li><%= review.score %></li>
+    <li><%= review.comment %></li>
+  </ul>
 <% end %>
+
