@@ -1,0 +1,20 @@
+Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Rails:
+  Enabled: true
+AllCops:
+  UseCache: false
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'Rakefile'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'test/**/*'
