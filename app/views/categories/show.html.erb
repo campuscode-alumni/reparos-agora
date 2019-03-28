@@ -1,6 +1,6 @@
 <h1><%=@category.name%></h1>
 
-<% @contractors.each do |contractor|  %>
+<% @category.contractors.each do |contractor|  %>
   <p><%= contractor.name %></p>
   <% if user_signed_in? %>
     <p><%= link_to "Solicitar orçamento", new_contractor_estimate_path(contractor)%>
